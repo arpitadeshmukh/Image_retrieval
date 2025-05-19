@@ -1,67 +1,64 @@
-# Python Environment Setup with `uv`
+# 🔍 Image Retrieval System
 
-This guide will help you set up a Python environment using `uv`, a fast Python package installer and resolver.
+This project implements an **Image Retrieval System** that identifies and returns visually similar images from a dataset given a query image. The system explores various classical and deep learning-based techniques for feature extraction and image similarity.
 
-## 1. Install `uv`
+## 📌 Highlights
 
-### macOS/Linux
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+- 📸 Feature extraction using:
+  - **SIFT** (Scale-Invariant Feature Transform)
+  - **HOG** (Histogram of Oriented Gradients)
+  - **Edge Detection**
+  - **ResNet** (Deep features)
+- 🔍 Retrieval using:
+  - **K-Nearest Neighbors (KNN)**
+  - **K-Means Clustering**
+  - **Support Vector Machines (SVM)**
+- 📊 Evaluation metrics:
+  - **Precision**
+  - **Recall**
+- 🏆 **Best performance** achieved using:
+  - **Bag of Visual Words (BoVW)** + **ResNet features**
 
-### Alternative: Using pip
-```bash
-pip install uv
-```
+---
 
-## 2. Initialize and Sync Your Environment  
+## 🧠 Techniques Explored
 
-Create and populate a virtual environment with your dependencies:  
+### Feature Extraction
+- SIFT: Local keypoint descriptors
+- HOG: Gradient-based global features
+- Edge Detection: Simple edge map encoding
+- ResNet: Deep feature vectors from pretrained CNN
 
-```bash
-# To ensure a safe setup, `uv sync` should work fine.
-uv venv .venv --python 3.10
-uv sync
-# Check if the virtual environment is created with the name `.venv`.  
-# If not, explicitly create it using the first command.
-```
+### Models for Retrieval
+- SVM: Trained binary/multiclass classifier for retrieval task
+- KMeans: Clustering of visual descriptors into vocabulary (BoVW)
+- MLP: trained a MLP with various layers to predict the class of the image
 
-This will:
-- Create a virtual environment in `.venv/`
-- Install packages from `requirements.txt` and/or `pyproject.toml`
+---
 
-## 3. Activate the Virtual Environment
+## 📈 Evaluation
 
-### macOS/Linux
-```bash
-source .venv/bin/activate
-```
+We evaluated each method using:
+- **Precision**
+- **Recall**
 
-### Windows
-```powershell
-.venv\Scripts\activate
-```
+These metrics allowed us to compare how accurately and completely the system retrieves relevant images for a given query.
 
-## 4. Managing Packages During Development
+---
 
-### Add a Package
-```bash
-uv add package_name
-```
+## 🧪 Results
 
-### Remove a Package
-```bash
-uv remove package_name
-```
+| Method                  | Precision | Recall |
+|-------------------------|-----------|--------|
+| SIFT + KNN              | Moderate  | Moderate |
+| HOG + SVM               | Moderate  | Low     |
+| ResNet + KNN            | High      | High    |
+| **BoVW + ResNet (Best)**| ✅ High   | ✅ High |
 
-### Update Requirements Files
-After adding or removing packages, update your requirements file:
+---
 
-```bash
-# Generate/update requirements.txt from the current environment
-uv pip freeze > requirements.txt
-```
+## 🚀 Try It Live
 
-## Additional Information
-
-For more details on Python environment management with `uv`, check out the comprehensive guide at [FloCode: Python Environments Again with uv](https://flocode.substack.com/p/044-python-environments-again-uv).
+- 🌐 **[Live Demo](https://prml-project-625596018923.us-central1.run.app/)**  
+- 📄 **[Project Page](https://storage.googleapis.com/prml-project/index.html)**
+- 📄 **[Report](https://storage.googleapis.com/prml-project/image_retrieval_endterm.pdf)**
